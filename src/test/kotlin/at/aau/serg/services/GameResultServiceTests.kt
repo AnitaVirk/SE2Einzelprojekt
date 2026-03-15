@@ -65,11 +65,11 @@ class GameResultServiceTests {
 
         assertEquals(2, res.size)
 
-        assertEquals(gameResult1, res[0])
-        assertEquals(1, res[0].id)
+        assertEquals(gameResult2, res[0])
+        assertEquals(2, res[0].id)
 
-        assertEquals(gameResult2, res[1])
-        assertEquals(2, res[1].id)
+        assertEquals(gameResult1, res[1])
+        assertEquals(1, res[1].id)
     }
     @Test
     fun test_deleteGameResult_existingId_removesEntry() {

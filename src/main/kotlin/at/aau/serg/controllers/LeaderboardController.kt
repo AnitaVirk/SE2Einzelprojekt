@@ -17,7 +17,7 @@ class LeaderboardController(
 
     @GetMapping
     fun getLeaderboard(
-        @RequestParam(required = false) rank: Int? //Parameter ist nicht Pflicht und Int? kann null sein
+        @RequestParam(required = false) rank: Int? //Parameter ist nicht Pflicht. Int? kann null sein
         ): List<GameResult>{
             val results = gameResultService.getGameResults()
                 .sortedWith(compareByDescending<GameResult> { it.score }.thenBy { it.timeInSeconds })
