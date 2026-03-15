@@ -5,17 +5,18 @@ import org.springframework.stereotype.Service
 import java.util.concurrent.atomic.AtomicLong
 
 @Service
-class GameResultService {
+class GameResultService { //open erlaubt Vererbungen
 
-    private val gameResults = mutableListOf<GameResult>()
-    private var nextId = AtomicLong(1)
+    private val gameResults = mutableListOf<GameResult>() //veränderbare Liste, in der alle Spielergebnisse gespeichert werden.
+    private var nextId = AtomicLong(1) //Zähler für IDs; jedes Ergebnis bekommt eine eigene ID
 
-    fun addGameResult(gameResult: GameResult) {
-        gameResult.id = nextId.getAndIncrement()
-        gameResults.add(gameResult)
+    fun addGameResult(gameResult: GameResult) { //
+        gameResult.id = nextId.getAndIncrement() //ID wird gesetzt
+        gameResults.add(gameResult) // Ergebnis wird gespeichert
     }
 
     fun getGameResult(id: Long): GameResult? = gameResults.find { it.id == id } // ? allows null
+
 
     fun getGameResults(): List<GameResult> = gameResults.sortedWith(
         compareByDescending<GameResult> { it.score } //sotiert den Score absteigend
@@ -28,6 +29,6 @@ class GameResultService {
      *     gameResults.removeIf({ gameResult -> gameResult.id == gameResultId })
      * }
      */
-    fun deleteGameResult(id: Long) = gameResults.removeIf { it.id == id }
+    fun deleteGameResult(id: Long) = gameResults.removeIf { it.id == id } //ein Ergebnis wird gelöscht
 
 }
